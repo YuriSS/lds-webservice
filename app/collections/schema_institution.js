@@ -19,6 +19,7 @@ function InstitutionSchema(mongoose) {
             Institution.find(callback);
         },
         findNear: function(callback, geo) {
+            console.log(geo);
             Institution.find({geolocation: { $nearSphere: geo}}, callback);
         },
         save: function(callback, body) {

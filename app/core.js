@@ -12,6 +12,7 @@ baseHandler.handlingResponse = function(attr, callback, alternative) {
     return function(req, res) {
         var param   = baseHandler.handlingParameter(req, attr || []);
         var param_2 = baseHandler.handlingParameter(req, alternative || []);
+        console.log(req.body);
         return callback(baseHandler.handlingError(res), param, param_2);
     }
 };
@@ -56,7 +57,9 @@ function handlingError(err, files) {
 }
 
 function eachFile(file) {
-    require(path.join(handlers, file))(baseHandler);
+    if(path.extname(file) === '.js') {
+        require(path.join(handlers, file))(baseHandler);
+    }
 }
 
 module.exports = getFiles;
