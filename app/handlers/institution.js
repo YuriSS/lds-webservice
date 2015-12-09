@@ -11,8 +11,10 @@ function instituicaoHandler(baseHandler) {
     router.post('/', baseHandler.handlingResponse(['body'], schema.save));
 
     router.put('/:id', baseHandler.handlingResponse(['body'], schema.update, ['params', 'id']));
+	
+	console.log(baseHandler.config.uri + '/instituicao');
 
-    baseHandler.app.use(path.join(baseHandler.config.uri, 'instituicao'), router);
+    baseHandler.app.use(baseHandler.config.uri + '/instituicao', router);
 
 };
 

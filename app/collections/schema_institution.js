@@ -18,8 +18,8 @@ function InstitutionSchema(mongoose) {
         findAll: function(callback) {
             Institution.find(callback);
         },
-        findNear: function(callback, geo) {
-            Institution.find({geolocation: { $nearSphere: geo}}, callback);
+        findNear: function(callback, data) {
+            Institution.find({geolocation: { $nearSphere: data.geo, $maxDistance: data.dist/6371}}, callback);
         },
         save: function(callback, body) {
             new Institution(body).save(callback);
